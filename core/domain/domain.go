@@ -2,7 +2,6 @@
 Package name : domain
 Filename : domain.go
 Description : Host code for application entities : Users, Devices, Company
-
 */
 package domain
 
