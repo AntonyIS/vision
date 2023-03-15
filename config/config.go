@@ -25,7 +25,7 @@ var (
 	DynamoDB_DevicesTable = os.Getenv("DynamoDB_DevicesTable")
 )
 
-type baseConfig struct {
+type BaseConfig struct {
 	Testing               string
 	Debug                 string
 	ENV                   string
@@ -43,9 +43,9 @@ type baseConfig struct {
 	DynamoDB_DevicesTable string
 }
 
-func AppConfig(env string) *baseConfig {
+func AppConfig(env string) *BaseConfig {
 	if env == "Dev" {
-		return &baseConfig{
+		return &BaseConfig{
 			Testing:               Testing,
 			Debug:                 Debug,
 			ENV:                   ENV,
