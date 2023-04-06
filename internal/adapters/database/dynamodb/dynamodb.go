@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/AntonyIS/vision1.0/config"
-	"github.com/AntonyIS/vision1.0/core/domain"
+	"github.com/AntonyIS/vision1.0/internal/core/domain"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
