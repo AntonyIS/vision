@@ -29,6 +29,7 @@ func NewService(repo ports.VisionRepository) appService {
 }
 
 func (a appService) CreateUser(user *domain.User) (*domain.User, error) {
+	user.HashPassword()
 	return a.repo.CreateUser(user)
 }
 

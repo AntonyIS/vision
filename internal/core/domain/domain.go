@@ -5,6 +5,8 @@ Description : Host code for application entities : Users, Devices, Company
 */
 package domain
 
+import "golang.org/x/crypto/bcrypt"
+
 type User struct {
 	UserID    string `json:"user_id"`
 	FirstName string `json:"firstname"`
@@ -50,4 +52,18 @@ type Client struct {
 	Image       string             `json:"image"`
 	Devices     map[string]*Device `json:"devices"`
 	Users       map[string]*User   `json:"users"`
+}
+
+func (u User) CheckPasswordHash(password string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(password))
+	return err == nil
+}
+
+func (u *User) HashPassword() error {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(u.Password), 14)
+	if err != nil {
+		return err
+	}
+	u.Password = string(bytes)
+	return nil
 }

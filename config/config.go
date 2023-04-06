@@ -8,21 +8,28 @@ import (
 )
 
 var (
-	Testing               = os.Getenv("Testing")
-	Debug                 = os.Getenv("Debug")
-	ENV                   = os.Getenv("ENV")
-	Port                  = os.Getenv("Port")
-	SecretKey             = os.Getenv("SecretKey")
-	AWS_ACCCESS_KEY       = os.Getenv("AWS_ACCCESS_KEY")
-	AWS_SECRET_KEY        = os.Getenv("AWS_DEFAULT_REGION")
-	AWS_DEFAULT_REGION    = os.Getenv("AWS_DEFAULT_REGION")
-	S3_Daily_Data         = os.Getenv("S3_Daily_Data")
-	S3_Weekly_Data        = os.Getenv("S3_Weekly_Data")
-	S3_Monthly_Data       = os.Getenv("S3_Monthly_Data")
-	S3_Yearly_data        = os.Getenv("S3_Yearly_data")
-	DynamoDB_UsersTable   = os.Getenv("DynamoDB_UsersTable")
-	DynamoDB_ClientsTable = os.Getenv("DynamoDB_ClientsTable")
-	DynamoDB_DevicesTable = os.Getenv("DynamoDB_DevicesTable")
+	Testing                    = os.Getenv("Testing")
+	Debug                      = os.Getenv("Debug")
+	ENV                        = os.Getenv("ENV")
+	Port                       = os.Getenv("Port")
+	SecretKey                  = os.Getenv("SecretKey")
+	AWS_ACCCESS_KEY            = os.Getenv("AWS_ACCCESS_KEY")
+	AWS_SECRET_KEY             = os.Getenv("AWS_DEFAULT_REGION")
+	AWS_DEFAULT_REGION         = os.Getenv("AWS_DEFAULT_REGION")
+	S3_Daily_Data              = os.Getenv("S3_Daily_Data")
+	S3_Weekly_Data             = os.Getenv("S3_Weekly_Data")
+	S3_Monthly_Data            = os.Getenv("S3_Monthly_Data")
+	S3_Yearly_data             = os.Getenv("S3_Yearly_data")
+	Test_S3_Daily_Data         = os.Getenv("Test_S3_Daily_Data")
+	Test_S3_Weekly_Data        = os.Getenv("Test_S3_Weekly_Data")
+	Test_S3_Monthly_Data       = os.Getenv("Test_S3_Monthly_Data")
+	Test_S3_Yearly_data        = os.Getenv("Test_S3_Yearly_data")
+	DynamoDB_UsersTable        = os.Getenv("DynamoDB_UsersTable")
+	DynamoDB_ClientsTable      = os.Getenv("DynamoDB_ClientsTable")
+	DynamoDB_DevicesTable      = os.Getenv("DynamoDB_DevicesTable")
+	Test_DynamoDB_UsersTable   = os.Getenv("Test_DynamoDB_UsersTable")
+	Test_DynamoDB_ClientsTable = os.Getenv("Test_DynamoDB_ClientsTable")
+	Test_DynamoDB_DevicesTable = os.Getenv("Test_DynamoDB_DevicesTable")
 )
 
 type BaseConfig struct {
@@ -30,7 +37,6 @@ type BaseConfig struct {
 	Debug                 string
 	ENV                   string
 	Port                  string
-	SecretKey             string
 	AWS_ACCCESS_KEY       string
 	AWS_SECRET_KEY        string
 	AWS_DEFAULT_REGION    string
@@ -44,26 +50,45 @@ type BaseConfig struct {
 }
 
 func AppConfig(env string) *BaseConfig {
-	if env == "Dev" {
-		return &BaseConfig{
-			Testing:               Testing,
-			Debug:                 Debug,
-			ENV:                   ENV,
-			Port:                  Port,
-			SecretKey:             SecretKey,
-			AWS_ACCCESS_KEY:       AWS_ACCCESS_KEY,
-			AWS_SECRET_KEY:        AWS_SECRET_KEY,
-			AWS_DEFAULT_REGION:    AWS_DEFAULT_REGION,
-			S3_Daily_Data:         S3_Daily_Data,
-			S3_Weekly_Data:        S3_Weekly_Data,
-			S3_Monthly_Data:       S3_Monthly_Data,
-			S3_Yearly_data:        S3_Yearly_data,
-			DynamoDB_UsersTable:   DynamoDB_UsersTable,
-			DynamoDB_ClientsTable: DynamoDB_ClientsTable,
-			DynamoDB_DevicesTable: DynamoDB_DevicesTable,
-		}
+	conf := &BaseConfig{
+		Debug:              Debug,
+		ENV:                env,
+		Port:               Port,
+		AWS_ACCCESS_KEY:    AWS_ACCCESS_KEY,
+		AWS_SECRET_KEY:     AWS_SECRET_KEY,
+		AWS_DEFAULT_REGION: AWS_DEFAULT_REGION,
 	}
-	return nil
+	switch env {
+	case "dev":
+		conf.Testing = Testing
+		conf.S3_Daily_Data = Test_S3_Daily_Data
+		conf.S3_Weekly_Data = Test_S3_Weekly_Data
+		conf.S3_Monthly_Data = Test_S3_Monthly_Data
+		conf.S3_Yearly_data = Test_S3_Yearly_data
+		conf.DynamoDB_UsersTable = Test_DynamoDB_UsersTable
+		conf.DynamoDB_ClientsTable = Test_DynamoDB_ClientsTable
+		conf.DynamoDB_DevicesTable = Test_DynamoDB_DevicesTable
+
+	case "prod":
+		conf.S3_Daily_Data = S3_Daily_Data
+		conf.S3_Weekly_Data = S3_Weekly_Data
+		conf.S3_Monthly_Data = S3_Monthly_Data
+		conf.S3_Yearly_data = S3_Yearly_data
+		conf.DynamoDB_UsersTable = DynamoDB_UsersTable
+		conf.DynamoDB_ClientsTable = DynamoDB_ClientsTable
+		conf.DynamoDB_DevicesTable = DynamoDB_DevicesTable
+	default:
+		conf.Testing = Testing
+		conf.S3_Daily_Data = Test_S3_Daily_Data
+		conf.S3_Weekly_Data = Test_S3_Weekly_Data
+		conf.S3_Monthly_Data = Test_S3_Monthly_Data
+		conf.S3_Yearly_data = Test_S3_Yearly_data
+		conf.DynamoDB_UsersTable = Test_DynamoDB_UsersTable
+		conf.DynamoDB_ClientsTable = Test_DynamoDB_ClientsTable
+		conf.DynamoDB_DevicesTable = Test_DynamoDB_DevicesTable
+	}
+
+	return conf
 }
 
 func LoadEnv() {

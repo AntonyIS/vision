@@ -19,8 +19,7 @@ type dynamoDbClient struct {
 	userTable, clientTable, deviceTable string
 }
 
-func NewDynamoDBRepository(c *config.BaseConfig) *dynamoDbClient {
-	// Add credentials based on my AWS user Role Arn
+func NewDynamoDB(c *config.BaseConfig) *dynamoDbClient {
 	sess := session.Must(session.NewSession(&aws.Config{
 		Region: aws.String(c.AWS_DEFAULT_REGION),
 	}))
@@ -219,7 +218,7 @@ func (db *dynamoDbClient) ReadDevice(id string) (*domain.Device, error) {
 	return &device, nil
 }
 
-func (db *dynamoDbClient) ReadProjects() ([]*domain.Device, error) {
+func (db *dynamoDbClient) ReadDevices() ([]*domain.Device, error) {
 	devices := []*domain.Device{}
 	filt := expression.Name("Id").AttributeNotExists()
 	proj := expression.NamesList(
