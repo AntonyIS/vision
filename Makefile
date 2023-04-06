@@ -1,2 +1,6 @@
-run:
-	go run cmd/main.go --dev dev
+build:
+	go build -o bin/vision
+serve: build
+	./bin/vision
+test:
+	go test -v ./...
