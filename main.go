@@ -3,10 +3,10 @@ package main
 import (
 	"flag"
 
-	"github.com/AntonyIS/vision1.0/config"
-	"github.com/AntonyIS/vision1.0/internal/adapters/database/dynamodb"
-	"github.com/AntonyIS/vision1.0/internal/adapters/http"
-	"github.com/AntonyIS/vision1.0/internal/core/services"
+	"github.com/AntonyIS/vision/config"
+	"github.com/AntonyIS/vision/internal/adapters/database/dynamodb"
+	"github.com/AntonyIS/vision/internal/adapters/http"
+	"github.com/AntonyIS/vision/internal/core/services"
 )
 
 var env string

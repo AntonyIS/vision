@@ -8,8 +8,8 @@ package services
 import (
 	"errors"
 
-	"github.com/AntonyIS/vision1.0/internal/core/domain"
-	"github.com/AntonyIS/vision1.0/internal/core/ports"
+	"github.com/AntonyIS/vision/internal/core/domain"
+	"github.com/AntonyIS/vision/internal/core/ports"
 )
 
 var (

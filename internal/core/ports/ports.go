@@ -5,7 +5,7 @@ Description : Host code for application business logic
 */
 package ports
 
-import "github.com/AntonyIS/vision1.0/internal/core/domain"
+import "github.com/AntonyIS/vision/internal/core/domain"
 
 type VisionService interface {
 	CreateUser(user *domain.User) (*domain.User, error)

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/AntonyIS/vision1.0/config"
+	"github.com/AntonyIS/vision/config"
 	"github.com/gin-gonic/gin"
 )
 

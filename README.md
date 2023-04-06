@@ -6,7 +6,7 @@
 ## Installing / Getting started
 1. Ensure you have Git installed on your computer and clone this project using the below command.
 ```
-git clone https://github.com/AntonyIS/vision1.0.git
+git clone https://github.com/AntonyIS/vision.git
 ```
 The project will be cloned into you machine
 
@@ -63,11 +63,11 @@ What is needed to set up the dev environment. For instance, global dependencies 
 ### Setting up Dev
 * Clone the application
 ```
-git clone https://github.com/AntonyIS/vision1.0
+git clone https://github.com/AntonyIS/vision
 ```
 * Navigate into the working directory
 ```
-cd vision1.0
+cd vision
 ```
 * Tidy up the application: install dependancies
 ```
