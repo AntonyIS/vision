@@ -1,6 +1,7 @@
 package http
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/AntonyIS/vision1.0/config"
@@ -14,6 +15,6 @@ func RunServer(conf *config.BaseConfig) {
 			"message": "Vision1.0",
 		})
 	})
-
-	router.Run()
+	var port = fmt.Sprintf(":%s", conf.Port)
+	router.Run(port)
 }

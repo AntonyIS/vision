@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 
 	"github.com/AntonyIS/vision1.0/config"
 	"github.com/AntonyIS/vision1.0/internal/adapters/database/dynamodb"
@@ -17,17 +16,10 @@ func init() {
 	flag.StringVar(&env, "Environment", "dev", "The environment the application is running")
 }
 
-func setup() {
+func main() {
 	conf := config.AppConfig(env)
 	dynamoDB := dynamodb.NewDynamoDB(conf)
 	svc := services.NewService(dynamoDB)
 	_ = svc
-
 	http.RunServer(conf)
-
-}
-
-func main() {
-	fmt.Println("Vision Portal")
-	setup()
 }
