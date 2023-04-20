@@ -10,6 +10,7 @@ import (
 
 func RunServer(conf *config.BaseConfig) {
 	router := gin.Default()
+
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.JSON(http.StatusOK, gin.H{
 			"message": "Vision",

@@ -15,6 +15,7 @@ The project will be cloned into you machine
 *   Go Gin - Go web application framework
 *   JWT - For authentication and resource authorization
 *   AWS DynamoDB - Store user and projects
+*   AWS Timestream Database
 *   Docker - Application packaging | Containerization
 *   AWS Elasticbeanstalk for deployment to cloud
 
