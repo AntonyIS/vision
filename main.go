@@ -20,6 +20,5 @@ func main() {
 	conf := config.AppConfig(env)
 	dynamoDB := dynamodb.NewDynamoDB(conf)
 	svc := services.NewService(dynamoDB)
-	_ = svc
-	http.RunServer(conf)
+	http.RunServer(svc)
 }

@@ -27,7 +27,7 @@ type handler struct {
 	svc services.AppService
 }
 
-func NewHandle(svc *services.AppService) GinHandler {
+func NewHandler(svc *services.AppService) GinHandler {
 	return &handler{
 		svc: *svc,
 	}
