@@ -1,6 +1,8 @@
 package http
 
 import (
+	"net/http"
+
 	"github.com/AntonyIS/vision/internal/core/services"
 	"github.com/gin-gonic/gin"
 )
@@ -42,6 +44,12 @@ func (h *handler) GetUser(ctx *gin.Context) {
 }
 
 func (h *handler) GetUsers(ctx *gin.Context) {
+	if users, err := h.svc.ReadUsers(); err != nil {
+		ctx.AbortWithError(http.StatusBadRequest, err)
+		return
+	} else {
+		ctx.JSON(http.StatusOK, users)
+	}
 
 }
 

@@ -84,7 +84,6 @@ func AppConfig(env string) *BaseConfig {
 	conf.Debug = Debug
 	conf.SecretKey = SecretKey
 	conf.Port = Port
-	conf.Port = Port
 	conf.AWS_ACCCESS_KEY = AWS_ACCCESS_KEY
 	conf.AWS_SECRET_KEY = AWS_SECRET_KEY
 	conf.AWS_DEFAULT_REGION = AWS_DEFAULT_REGION
